@@ -22,9 +22,22 @@ class GitCommand {
         if(modified_files[path_file]){
             this.staging.push(modified_files[path_file]);
             delete modified_files[path_file];
-        } 
-        /* add codes here */
-        else{
+
+        } else if(path_file === ".") {
+            for(let i in modified_files){
+                if(modified_files[i]){
+                    this.staging.push(modified_files[i]);
+                    delete modified_files[i];
+                }
+            }
+        } else if(path_file === "*") {
+            if (modified_files[".github/workflows/actions.yml"]) {
+                this.staging.push(modified_files[".github/workflows/actions.yml"]);
+                delete modified_files[".github/workflows/actions.yml"];
+            }
+            
+        }else{
+
             return `Failed to add ${path_file}! File is not modified or missing.`;
         }
         return "Successfully added as index file/s.";
