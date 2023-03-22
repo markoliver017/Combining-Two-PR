@@ -11,17 +11,7 @@ class GitCommand {
 
     //Command: git status
     status(){
-        const num_changes = this.staging.length;
-        if(num_changes > 0) {
-            let output = `You have ${num_changes} change/s.`;
-            for(let i=0; i<num_changes; i++) {
-                output += `\n${this.staging[i].location}/${this.staging[i].name}`;
-            }
-            return output;
-
-        } else {
-            return `You have ${num_changes} change/s.\n`;
-        }
+        /* add codes here */
     }
 
 
@@ -32,14 +22,8 @@ class GitCommand {
         if(modified_files[path_file]){
             this.staging.push(modified_files[path_file]);
             delete modified_files[path_file];
-        } else if(path_file === ".") {
-            for(let i in modified_files){
-                if(modified_files[i]){
-                    this.staging.push(modified_files[i]);
-                    delete modified_files[i];
-                }
-            }
-        }
+        } 
+        /* add codes here */
         else{
             return `Failed to add ${path_file}! File is not modified or missing.`;
         }
